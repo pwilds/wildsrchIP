@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado de Búsqueda</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Resultado de Búsqueda</h1>
+        <div class="card mt-4">
+            <div class="card-body">
+                <p><strong>IP:</strong> {{ data.ip }}</p>
+                <p><strong>País:</strong> {{ data.location.country }}</p>
+                <p><strong>Región:</strong> {{ data.location.region }}</p>
+                <p><strong>Ciudad:</strong> {{ data.location.city }}</p>
+                <p><strong>Latitud:</strong> {{ data.location.lat }}</p>
+                <p><strong>Longitud:</strong> {{ data.location.lng }}</p>
+                <p><strong>Código Postal:</strong> {{ data.location.postalCode }}</p>
+                <p><strong>Zona Horaria:</strong> {{ data.location.timezone }}</p>
+                <p><strong>ISP:</strong> {{ data.isp }}</p>
+                {% if data.as %}
+                <p><strong>Sistema Autónomo (ASN):</strong> {{ data.as.asn }}</p>
+                <p><strong>Nombre del Sistema Autónomo:</strong> {{ data.as.name }}</p>
+                <p><strong>Ruta del Sistema Autónomo:</strong> {{ data.as.route }}</p>
+                <p><strong>Dominio del Sistema Autónomo:</strong> <a href="{{ data.as.domain }}">{{ data.as.domain }}</a></p>
+                <p><strong>Tipo del Sistema Autónomo:</strong> {{ data.as.type }}</p>
+                {% endif %}
+                <p><strong>Proxy:</strong> {{ data.proxy.proxy }}</p>
+                <p><strong>VPN:</strong> {{ data.proxy.vpn }}</p>
+                <p><strong>Tor:</strong> {{ data.proxy.tor }}</p>
+                {% if data.domains %}
+                <p><strong>Dominios Asociados:</strong></p>
+                <ul>
+                    {% for domain in data.domains %}
+                        <li>{{ domain }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <a href="/" class="btn btn-secondary mt-3">Volver</a>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
